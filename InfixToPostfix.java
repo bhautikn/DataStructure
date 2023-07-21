@@ -1,8 +1,8 @@
-import Stack.Stack;
+import java.util.Stack;
 public class InfixToPrefix{
 	public static void main(String[] args) {
 		String expression = "(A+B*C/D-E+F/G/(H+I))";
-		Stack s = new Stack();
+		Stack<Integer> s = new Stack<>();
 		String reversePolish = "";
 		s.push('(');
 		expression += ")";
