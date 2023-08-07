@@ -1,4 +1,4 @@
-package Queue;
+package CirculerQueue;
 public class CirculerQueue{
 	private int arr[];
 	private int front = -1;
@@ -10,55 +10,51 @@ public class CirculerQueue{
 		arr = new int[n];
 	}
 	public void add(int n){
-		rear++;
-		if (rear == len) {
-			rear = -1;
-		}
+		if (rear == len-1) rear = 0;
+		else rear++;
+
 		if (front == rear) {
-			System.out.println("Queue Overflow");
-			if (rear == -1) rear = len-1;
+			System.out.print("Queue Overflow\n");
+			if (rear == 0) rear = len-1;
 			else rear--;
 			return;
 		}
-		if (rear == -1) rear ++;
 		arr[rear] = n;
+		if (front == -1) front = 0;
+		return;
 	}
 	public int delete(){
-		front++;
-	    if(front == len+1){
-	        front = -1;
+	    if(front == -1){
+	        System.out.println("Underflow");
+	        return 0;
 	    }
-	    if (front == rear+1) {
-			System.out.println("Queue Underflow");
-			front = rear = -1;
-			return 0;
-		}
-		if (front == -1) front = 0;
-		int temp = arr[front];
-		if (front == rear) front = rear = -1;
+	    int temp = arr[front];
+
+	    if (front == rear){
+	    	front = rear = -1;
+	    	return temp;
+	    }
+	    if(front == len-1) front = 0;
+	    else front++;
+
 	    return temp;
 	}
 	public String toString(){
 		String str = "";
-	    if (front == rear)	return "";
-	    if (rear == -1) rear = 0;
-	    if (front == -1) front = 0;
-	    else if (front == len) front = 0;
-	    else front++;
-
-	    if(front<=rear){
-	        for(int i=front;i<=rear;i++){
-	        	str += arr[i]+", ";
-	        }
-	    }
+		if (front == -1 && rear == -1)
+			return "";
+		if(front<=rear)
+	        for(int i=front;i<=rear;i++)
+	            str += arr[i]+", ";  
 	    else{
-	        for(int i=front;i<=len-1;i++){
-	        	str += arr[i]+", ";
-	        }
-	        for(int i=0;i<=rear;i++){
-	        	str += arr[i]+", ";
-	        }  
+	        for(int i=front;i<=len-1;i++)
+	            str += arr[i]+", ";
+	        for(int i=0;i<=rear;i++)
+	            str += arr[i]+", ";
 	    }
 	    return str;
+	}
+	public String display(){
+		return this.toString();
 	}
 }
