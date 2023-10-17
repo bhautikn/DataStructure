@@ -1,6 +1,6 @@
 // WAP to sort an Array using Bubble sort
 
-public class BubbleSort {
+public class p16{
 	public static void main(String[] args) {
 		int arr[] = {59, 32, 41, 49, 3, 1, 77, 65, 47, 98, 43};
 
